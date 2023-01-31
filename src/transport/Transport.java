@@ -38,6 +38,8 @@ public abstract class Transport<T extends Driver> implements Competing{
 
     public abstract void finishTheMovement();
 
+    public abstract void printType();
+
     @Override
     public String toString() {
         return "Марка: " + brand + ", " +

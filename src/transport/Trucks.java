@@ -1,8 +1,58 @@
 package transport;
 
 public class Trucks<T extends DriverC> extends Transport{
-    public Trucks(String brand, String model, Double engineVolume, T driver) {
+
+    private LoadCapacity loadCapacity;
+
+    enum LoadCapacity {
+        N1(null, 3.5f),
+        N2(3.5f, 12f),
+        N3(12f, null);
+
+        private Float downLoadCapacity;
+        private Float upLoadCapacity;
+
+        LoadCapacity(Float downLoadCapacity, Float upLoadCapacity) {
+            this.downLoadCapacity = downLoadCapacity;
+            this.upLoadCapacity = upLoadCapacity;
+        }
+
+        public Float getDownLoadCapacity() {
+            return downLoadCapacity;
+        }
+
+        public void setDownLoadCapacity(Float downLoadCapacity) {
+            this.downLoadCapacity = downLoadCapacity;
+        }
+
+        public Float getUpLoadCapacity() {
+            return upLoadCapacity;
+        }
+
+        public void setUpLoadCapacity(Float upLoadCapacity) {
+            this.upLoadCapacity = upLoadCapacity;
+        }
+
+        @Override
+        public String toString() {
+            if (getDownLoadCapacity() == null) {
+                return " Грузоподьемность: до " + getUpLoadCapacity() + " тонн";
+            } else if (getUpLoadCapacity() == null) {
+                return " Грузоподьемность: от " + getDownLoadCapacity() + " тонн";
+            } else {
+                return " Грузоподьемность: от " + getDownLoadCapacity() + " тонн до "
+                        + getUpLoadCapacity() + " тонн";
+            }
+        }
+    }
+
+    public Trucks(String brand, String model, Double engineVolume, T driver, LoadCapacity loadCapacity) {
         super(brand, model, engineVolume, driver);
+        this.loadCapacity = loadCapacity;
+    }
+
+    public LoadCapacity getLoadCapacity() {
+        return loadCapacity;
     }
 
 
@@ -13,6 +63,15 @@ public class Trucks<T extends DriverC> extends Transport{
     @Override
     public void finishTheMovement() {
         System.out.println("Грузовик " + getBrand() + " " + getModel() + " закончил движение");
+    }
+
+    @Override
+    public void printType() {
+        if (getLoadCapacity() == null) {
+            System.out.println("Данных по транспортному средству недостаточно");
+        } else {
+            System.out.println("Грузовик: " + super.toString() + getLoadCapacity());
+        }
     }
 
 
