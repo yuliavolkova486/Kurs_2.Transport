@@ -1,6 +1,6 @@
 package transport;
 public class TestTransport {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws TransportTypeException {
         PassengerCars<DriverB> passengerCars1 = new PassengerCars<>("Volga", "2110", 1.7,
                 new DriverB("Иванов Иван Иванович", true, 8),
                 PassengerCars.BodyType.TYPE2);
@@ -40,14 +40,9 @@ public class TestTransport {
                 new DriverD("Сидоров Илья Петрович", true, 15),
                 TheBuses.Capacity.EXTRA_LARGE);
 
-        passengerCars1.printType();
-        passengerCars3.printType();
-        trucks1.printType();
-        trucks2.printType();
-        trucks4.printType();
-        theBuses1.printType();
-        theBuses2.printType();
-        theBuses4.printType();
-
+        theBuses3.passDiagnostics();
+        trucks3.passDiagnostics();
+        passengerCars2.passDiagnostics();
+        theBuses2.passDiagnostics();
     }
 }

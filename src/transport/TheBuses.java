@@ -81,6 +81,15 @@ public class TheBuses<T extends DriverD> extends Transport{
         }
     }
 
+    @Override
+    public void passDiagnostics() {
+        try {
+            throw new TransportTypeException();
+        } catch (TransportTypeException e) {
+            System.err.println("Автобусы не проходят диагностику!!!");
+        }
+    }
+
 
     @Override
     public void pitStop() {

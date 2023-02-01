@@ -1,8 +1,9 @@
 package transport;
 
-public class PassengerCars<T extends DriverB> extends Transport{
+public class PassengerCars<T extends DriverB> extends Transport {
 
     private BodyType bodyType;
+
     enum BodyType {
         TYPE1("Седан"),
         TYPE2("Хетчбэк"),
@@ -14,19 +15,20 @@ public class PassengerCars<T extends DriverB> extends Transport{
         TYPE8("Фургон"),
         TYPE9("Минивэн");
 
-                      private final String name;
+        private final String name;
 
-                      BodyType(String name) {
-                          this.name = name;
-                      }
+        BodyType(String name) {
+            this.name = name;
+        }
 
-                      @Override
-                      public String toString() {
-                      return " Тип кузова: " + name;
-                      }
+        @Override
+        public String toString() {
+            return " Тип кузова: " + name;
+        }
     }
 
-    public PassengerCars(String brand, String model, Double engineVolume, T driver, BodyType bodyType) {
+    public PassengerCars(String brand, String model, Double engineVolume, T driver,
+                         BodyType bodyType) {
         super(brand, model, engineVolume, driver);
         this.setBodyType(bodyType);
     }
@@ -53,9 +55,17 @@ public class PassengerCars<T extends DriverB> extends Transport{
         if (getBodyType() == null) {
             System.out.println("Данных по транспортному средству недостаточно");
         } else {
-            System.out.println("Легковой автомобиль: " + super.toString() +  getBodyType());
+            System.out.println("Легковой автомобиль: " + super.toString() + getBodyType());
         }
     }
+
+    @Override
+    public void passDiagnostics() {
+        System.out.println("Автомобиль " + getBrand() + " " + getModel() + " проходит диагностику");
+    }
+
+
+
 
 
     @Override
