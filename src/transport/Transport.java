@@ -6,8 +6,6 @@ public abstract class Transport<T extends Driver> implements Competing{
     private final Double engineVolume;
     private final T driver;
 
-    private boolean diagnosticsPassed;
-
     public Transport(String brand, String model, Double engineVolume, T driver) {
         if (brand == null || brand.isEmpty()) {
             brand = "Not specified";
@@ -34,14 +32,6 @@ public abstract class Transport<T extends Driver> implements Competing{
 
     public Driver getDriver() {
         return driver;
-    }
-
-    public boolean isDiagnosticsPassed() {
-        return diagnosticsPassed;
-    }
-
-    public void setDiagnosticsPassed(boolean diagnosticsPassed) {
-        this.diagnosticsPassed = diagnosticsPassed;
     }
 
     public abstract void startMoving();
