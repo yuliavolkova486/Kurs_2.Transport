@@ -82,12 +82,8 @@ public class TheBuses<T extends DriverD> extends Transport{
     }
 
     @Override
-    public void passDiagnostics() {
-        try {
-            throw new TransportTypeException();
-        } catch (TransportTypeException e) {
-            System.err.println("Автобусы не проходят диагностику!!!");
-        }
+    public boolean passDiagnostics() throws TransportTypeException {
+        throw new TransportTypeException();
     }
 
 

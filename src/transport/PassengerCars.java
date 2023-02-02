@@ -60,8 +60,9 @@ public class PassengerCars<T extends DriverB> extends Transport {
     }
 
     @Override
-    public void passDiagnostics() {
+    public boolean passDiagnostics() {
         System.out.println("Автомобиль " + getBrand() + " " + getModel() + " проходит диагностику");
+        return this.isDiagnosticsPassed();
     }
 
 

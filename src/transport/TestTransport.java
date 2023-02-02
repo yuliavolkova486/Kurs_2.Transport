@@ -1,6 +1,6 @@
 package transport;
 public class TestTransport {
-    public static void main(String[] args) throws TransportTypeException {
+    public static void main(String[] args) {
         PassengerCars<DriverB> passengerCars1 = new PassengerCars<>("Volga", "2110", 1.7,
                 new DriverB("Иванов Иван Иванович", true, 8),
                 PassengerCars.BodyType.TYPE2);
@@ -26,7 +26,15 @@ public class TestTransport {
         Trucks<DriverC> trucks4 = new Trucks<>("Mersedes-Benz", "L 3500", 8.0,
                 new DriverC("Васильев Василий Дамирович", true, 6),
                 Trucks.LoadCapacity.N2);
+        checkTransport();
+        passengerCars1.passDiagnostics();
+        trucks3.passDiagnostics();
+    }
 
+    public static void checkTransport()  {
+        TheBuses<DriverD> theBuses4 = new TheBuses<>("Nissan", "N180", 5.0,
+                new DriverD("Сидоров Илья Петрович", true, 15),
+                TheBuses.Capacity.EXTRA_LARGE);
         TheBuses<DriverD> theBuses1 = new TheBuses<>("Mersedes-Benz", "O 6600", 4.5,
                 new DriverD("Кондратенко Святослав Савельевич", true, 28),
                 TheBuses.Capacity.EXTRA_SMALL);
@@ -36,13 +44,18 @@ public class TestTransport {
         TheBuses<DriverD> theBuses3 = new TheBuses<>("Volkswagen", "Samba", 4.8,
                 new DriverD("Фуниз Владлен Иванович", true, 16),
                 TheBuses.Capacity.MIDDLE);
-        TheBuses<DriverD> theBuses4 = new TheBuses<>("Nissan", "N180", 5.0,
-                new DriverD("Сидоров Илья Петрович", true, 15),
-                TheBuses.Capacity.EXTRA_LARGE);
-
-        theBuses3.passDiagnostics();
-        trucks3.passDiagnostics();
-        passengerCars2.passDiagnostics();
-        theBuses2.passDiagnostics();
+        try {
+            theBuses4.passDiagnostics();
+            theBuses1.passDiagnostics();
+            theBuses2.passDiagnostics();
+            theBuses3.passDiagnostics();
+        } catch (TransportTypeException e) {
+            System.err.println("Автобусы не проходят диагностику!");
+        }
     }
 }
+
+
+
+
+
