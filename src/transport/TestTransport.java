@@ -26,12 +26,7 @@ public class TestTransport {
         Trucks<DriverC> trucks4 = new Trucks<>("Mersedes-Benz", "L 3500", 8.0,
                 new DriverC("Васильев Василий Дамирович", true, 6),
                 Trucks.LoadCapacity.N2);
-        checkTransport();
-        passengerCars1.passDiagnostics();
-        trucks3.passDiagnostics();
-    }
 
-    public static void checkTransport()  {
         TheBuses<DriverD> theBuses4 = new TheBuses<>("Nissan", "N180", 5.0,
                 new DriverD("Сидоров Илья Петрович", true, 15),
                 TheBuses.Capacity.EXTRA_LARGE);
@@ -44,11 +39,16 @@ public class TestTransport {
         TheBuses<DriverD> theBuses3 = new TheBuses<>("Volkswagen", "Samba", 4.8,
                 new DriverD("Фуниз Владлен Иванович", true, 16),
                 TheBuses.Capacity.MIDDLE);
+
+        checkTransport(theBuses1);
+        passengerCars1.passDiagnostics();
+        trucks3.passDiagnostics();
+        checkTransport(theBuses3);
+    }
+
+    public static void checkTransport(TheBuses theBuses)  {
         try {
-            theBuses4.passDiagnostics();
-            theBuses1.passDiagnostics();
-            theBuses2.passDiagnostics();
-            theBuses3.passDiagnostics();
+            theBuses.passDiagnostics();
         } catch (TransportTypeException e) {
             System.err.println("Автобусы не проходят диагностику!");
         }
