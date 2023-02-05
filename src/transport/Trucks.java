@@ -74,6 +74,12 @@ public class Trucks<T extends DriverC> extends Transport{
         }
     }
 
+    @Override
+    public boolean passDiagnostics() {
+        System.out.println("Грузовик " + getBrand() + " " + getModel() + " проходит диагностику");
+        return true;
+    }
+
 
     @Override
     public void pitStop() {

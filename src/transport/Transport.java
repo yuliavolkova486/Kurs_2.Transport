@@ -40,6 +40,8 @@ public abstract class Transport<T extends Driver> implements Competing{
 
     public abstract void printType();
 
+    public abstract boolean passDiagnostics() throws TransportTypeException;
+
     @Override
     public String toString() {
         return "Марка: " + brand + ", " +

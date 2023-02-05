@@ -1,4 +1,7 @@
 package transport;
+
+import java.io.IOException;
+
 public class TestTransport {
     public static void main(String[] args) {
         PassengerCars<DriverB> passengerCars1 = new PassengerCars<>("Volga", "2110", 1.7,
@@ -27,6 +30,9 @@ public class TestTransport {
                 new DriverC("Васильев Василий Дамирович", true, 6),
                 Trucks.LoadCapacity.N2);
 
+        TheBuses<DriverD> theBuses4 = new TheBuses<>("Nissan", "N180", 5.0,
+                new DriverD("Сидоров Илья Петрович", true, 15),
+                TheBuses.Capacity.EXTRA_LARGE);
         TheBuses<DriverD> theBuses1 = new TheBuses<>("Mersedes-Benz", "O 6600", 4.5,
                 new DriverD("Кондратенко Святослав Савельевич", true, 28),
                 TheBuses.Capacity.EXTRA_SMALL);
@@ -36,18 +42,25 @@ public class TestTransport {
         TheBuses<DriverD> theBuses3 = new TheBuses<>("Volkswagen", "Samba", 4.8,
                 new DriverD("Фуниз Владлен Иванович", true, 16),
                 TheBuses.Capacity.MIDDLE);
-        TheBuses<DriverD> theBuses4 = new TheBuses<>("Nissan", "N180", 5.0,
-                new DriverD("Сидоров Илья Петрович", true, 15),
-                TheBuses.Capacity.EXTRA_LARGE);
 
-        passengerCars1.printType();
-        passengerCars3.printType();
-        trucks1.printType();
-        trucks2.printType();
-        trucks4.printType();
-        theBuses1.printType();
-        theBuses2.printType();
-        theBuses4.printType();
+        checkTransport(theBuses1);
+        passengerCars1.passDiagnostics();
+        trucks3.passDiagnostics();
+        checkTransport(theBuses3);
+        checkTransport(passengerCars1);
 
     }
+
+    public static void checkTransport(Transport transport)  {
+        try {
+            transport.passDiagnostics();
+        } catch (IOException e) {
+            System.err.println("Ошибка: " + e);
+        }
+    }
 }
+
+
+
+
+
