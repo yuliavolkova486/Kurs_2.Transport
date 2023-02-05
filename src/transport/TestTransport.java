@@ -1,4 +1,7 @@
 package transport;
+
+import java.io.IOException;
+
 public class TestTransport {
     public static void main(String[] args) {
         PassengerCars<DriverB> passengerCars1 = new PassengerCars<>("Volga", "2110", 1.7,
@@ -44,13 +47,15 @@ public class TestTransport {
         passengerCars1.passDiagnostics();
         trucks3.passDiagnostics();
         checkTransport(theBuses3);
+        checkTransport(passengerCars1);
+
     }
 
-    public static void checkTransport(TheBuses theBuses)  {
+    public static void checkTransport(Transport transport)  {
         try {
-            theBuses.passDiagnostics();
-        } catch (TransportTypeException e) {
-            System.err.println("Автобусы не проходят диагностику!");
+            transport.passDiagnostics();
+        } catch (IOException e) {
+            System.err.println("Ошибка: " + e);
         }
     }
 }

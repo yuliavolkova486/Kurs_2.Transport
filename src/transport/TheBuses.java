@@ -83,7 +83,7 @@ public class TheBuses<T extends DriverD> extends Transport{
 
     @Override
     public boolean passDiagnostics() throws TransportTypeException {
-        throw new TransportTypeException();
+        throw new TransportTypeException("Автобусы не проходят диагностику!");
     }
 
 
