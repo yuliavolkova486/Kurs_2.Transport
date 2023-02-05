@@ -1,12 +1,17 @@
 package transport;
 
-public abstract class Transport<T extends Driver> implements Competing{
+import java.util.List;
+
+public abstract class Transport<T extends Driver> implements Competing {
     private final String brand;
     private final String model;
     private final Double engineVolume;
     private final T driver;
 
-    public Transport(String brand, String model, Double engineVolume, T driver) {
+    private List<Mechanic> mechanics;
+
+
+    public Transport(String brand, String model, Double engineVolume, T driver, List<Mechanic> mechanics) {
         if (brand == null || brand.isEmpty()) {
             brand = "Not specified";
         }
@@ -14,12 +19,13 @@ public abstract class Transport<T extends Driver> implements Competing{
         if (model == null || model.isEmpty()) {
             model = "Not specified";
         }
-            this.model = model;
+        this.model = model;
         if (engineVolume <= 0) {
             engineVolume = 1.6;
         }
         this.engineVolume = engineVolume;
         this.driver = driver;
+        this.mechanics = mechanics;
     }
 
     public String getBrand() {
@@ -32,6 +38,14 @@ public abstract class Transport<T extends Driver> implements Competing{
 
     public Driver getDriver() {
         return driver;
+    }
+
+    public List<Mechanic> getMechanics() {
+        return mechanics;
+    }
+
+    public void setMechanics(List<Mechanic> mechanics) {
+        this.mechanics = mechanics;
     }
 
     public abstract void startMoving();
@@ -47,6 +61,19 @@ public abstract class Transport<T extends Driver> implements Competing{
         return "Марка: " + brand + ", " +
                 "модель: " + model + ", " +
                 "объём двигателя: " + engineVolume;
+    }
+
+    public boolean checkTransportNeedService()  {
+        try {
+            passDiagnostics();
+        } catch (TransportTypeException e) {
+            return false;
+        }
+        return true;
+    }
+
+    public static void printFullNameDriver(Transport transport, Driver driver) {
+        System.out.println(transport.toString() + ", Водитель: " + driver.getFullName());
     }
 }
 

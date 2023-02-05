@@ -1,5 +1,7 @@
 package transport;
 
+import java.util.List;
+
 public class PassengerCars<T extends DriverB> extends Transport {
 
     private BodyType bodyType;
@@ -27,10 +29,9 @@ public class PassengerCars<T extends DriverB> extends Transport {
         }
     }
 
-    public PassengerCars(String brand, String model, Double engineVolume, T driver,
-                         BodyType bodyType) {
-        super(brand, model, engineVolume, driver);
-        this.setBodyType(bodyType);
+    public PassengerCars(String brand, String model, Double engineVolume, Driver driver, List list, BodyType bodyType) {
+        super(brand, model, engineVolume, driver, list);
+        this.bodyType = bodyType;
     }
 
     public BodyType getBodyType() {
@@ -61,7 +62,7 @@ public class PassengerCars<T extends DriverB> extends Transport {
 
     @Override
     public boolean passDiagnostics() {
-        System.out.println("Автомобиль " + getBrand() + " " + getModel() + " проходит диагностику");
+        System.out.println("Автомобиль " + getBrand() + " " + getModel() + " может проходить диагностику");
         return true;
     }
 
@@ -93,5 +94,10 @@ public class PassengerCars<T extends DriverB> extends Transport {
     public static void getTransportInfo(Transport<?> transport) {
         System.out.println("Водитель категории B " + transport.getDriver().getFullName() + " управляет автомобилем " + transport.getBrand() + " "
                 + transport.getModel() + " и будет участвовать в заезде");
+    }
+
+    @Override
+    public String toString() {
+        return "Автомобиль: " + super.toString();
     }
 }
