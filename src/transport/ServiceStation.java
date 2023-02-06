@@ -24,7 +24,7 @@ public class ServiceStation {
                 Mechanic mechanic = (Mechanic) queue.poll().getMechanics().get(0);
                 mechanic.performMaintenance(queue.element());
             }
-            }
         }
+    }
 }
 
