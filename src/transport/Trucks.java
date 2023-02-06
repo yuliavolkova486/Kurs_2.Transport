@@ -1,5 +1,7 @@
 package transport;
 
+import java.util.List;
+
 public class Trucks<T extends DriverC> extends Transport{
 
     private LoadCapacity loadCapacity;
@@ -46,8 +48,8 @@ public class Trucks<T extends DriverC> extends Transport{
         }
     }
 
-    public Trucks(String brand, String model, Double engineVolume, T driver, LoadCapacity loadCapacity) {
-        super(brand, model, engineVolume, driver);
+    public Trucks(String brand, String model, Double engineVolume, Driver driver, List list, LoadCapacity loadCapacity) {
+        super(brand, model, engineVolume, driver, list);
         this.loadCapacity = loadCapacity;
     }
 
@@ -76,7 +78,7 @@ public class Trucks<T extends DriverC> extends Transport{
 
     @Override
     public boolean passDiagnostics() {
-        System.out.println("Грузовик " + getBrand() + " " + getModel() + " проходит диагностику");
+        System.out.println("Грузовик " + getBrand() + " " + getModel() + " может проходить диагностику");
         return true;
     }
 
@@ -105,5 +107,10 @@ public class Trucks<T extends DriverC> extends Transport{
     public static void getTransportInfo(Transport<?> transport) {
         System.out.println("Водитель категории C " + transport.getDriver().getFullName() + " управляет грузовиком " + transport.getBrand() + " "
                 + transport.getModel() + " и будет участвовать в заезде");
+    }
+
+    @Override
+    public String toString() {
+        return "Грузовик: " + super.toString();
     }
 }

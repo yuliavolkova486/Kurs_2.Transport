@@ -1,5 +1,7 @@
 package transport;
 
+import java.util.List;
+
 public class TheBuses<T extends DriverD> extends Transport{
 
     private Capacity capacity;
@@ -49,9 +51,8 @@ public class TheBuses<T extends DriverD> extends Transport{
     }
 
 
-
-    public TheBuses(String brand, String model, Double engineVolume, T driver, Capacity capacity) {
-        super(brand, model, engineVolume, driver);
+    public TheBuses(String brand, String model, Double engineVolume, Driver driver, List list, Capacity capacity) {
+        super(brand, model, engineVolume, driver, list);
         this.capacity = capacity;
     }
 
@@ -111,5 +112,10 @@ public class TheBuses<T extends DriverD> extends Transport{
     public static void getTransportInfo(Transport<?> transport) {
         System.out.println("Водитель категории D " + transport.getDriver().getFullName() + " управляет автобусом " + transport.getBrand() + " "
                 + transport.getModel() + " и будет участвовать в заезде");
+    }
+
+    @Override
+    public String toString() {
+        return "Автобус: " + super.toString();
     }
 }
