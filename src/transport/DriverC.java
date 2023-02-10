@@ -20,4 +20,19 @@ public class DriverC extends Driver{
     public void refuel() {
         System.out.println("Водитель категории C " + getFullName() + " заправляется");
     }
+
+    @Override
+    public String toString() {
+        return "Водитель категории C: " + super.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return super.equals(o);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }
